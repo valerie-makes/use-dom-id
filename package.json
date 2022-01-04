@@ -1,7 +1,7 @@
 {
   "name": "@valerie-makes/use-dom-id",
   "version": "0.1.0",
-  "description": "Generate unique IDs for ReactDOM",
+  "description": "A React Hook that generates unique IDs for DOM elements",
   "keywords": [
     "react",
     "hook",
@@ -29,6 +29,10 @@
   "unpkg": "./dist/use-dom-id.umd.js",
   "module": "./dist/use-dom-id.module.js",
   "source": "src/use-dom-id.ts",
+  "files": [
+    "src",
+    "dist"
+  ],
   "scripts": {
     "build": "microbundle",
     "dev": "microbundle watch",
