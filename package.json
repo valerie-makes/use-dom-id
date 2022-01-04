@@ -1,6 +1,6 @@
 {
   "name": "@valerie-makes/use-dom-id",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A React Hook that generates unique IDs for DOM elements",
   "keywords": [
     "react",
