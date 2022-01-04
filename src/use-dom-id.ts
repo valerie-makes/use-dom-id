@@ -11,7 +11,7 @@ let nextId = 0;
 // - Generate an ID immediately
 // - Provide `idProps` and `useId`
 function useServerDomId<E extends Element>(
-  prefix: string
+  prefix: string,
 ): [IdProps<E>, typeof useId] {
   // useState, useRef etc are unnecessary for server renders - React
   // will only call each hook once because there is no interactivity
@@ -29,7 +29,7 @@ function useServerDomId<E extends Element>(
 // - Hydration: Get DOM ID using ref
 // - Non-hydration: generate new ID
 function useClientDomId<E extends Element>(
-  prefix: string
+  prefix: string,
 ): [IdProps<E>, typeof useId] {
   // React will preserve existing attributes if they are
   // undefined during hydration, but will warn by default
