@@ -22,15 +22,6 @@ function MyForm() {
 }
 ```
 
-The following HTML structure is produced during server-side rendering:
-
-```html
-<form>
-  <label for="id-server-0">Full Name</label>
-  <input id="id-server-0" type="text" />
-</form>
-```
-
 ### Form with multiple labelled input elements
 
 ```tsx
@@ -53,16 +44,4 @@ function MyForm() {
     </form>
   );
 }
-```
-
-The following HTML structure is produced during server-side rendering:
-
-```html
-<form>
-  <label for="id-server-0">Full Name</label>
-  <input id="id-server-0" type="text" />
-
-  <label for="id-server-1">Email Address</label>
-  <input id="id-server-1" type="email" />
-</form>
 ```
