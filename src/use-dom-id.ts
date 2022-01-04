@@ -1,11 +1,12 @@
 import type { HTMLProps, SVGProps, MutableRefObject } from "react";
-import { useRef, useState, useLayoutEffect } from "react";
+import { useRef, useState, useEffect, useLayoutEffect } from "react";
 
 type IdProps<E extends Element> = { id: string; ref: MutableRefObject<E> };
 type ElementProps = HTMLProps<HTMLElement> | SVGProps<SVGElement>;
 type Generator<T extends ElementProps> = (id: string) => T;
 
 let nextId = 0;
+let hydrationComplete = false;
 
 // For server-side renders:
 // - Generate an ID immediately
@@ -33,7 +34,9 @@ function useClientDomId<E extends Element>(
 ): [IdProps<E>, typeof useId] {
   // React will preserve existing attributes if they are
   // undefined during hydration, but will warn by default
-  const [id, setId] = useState<string | undefined>();
+  const [id, setId] = useState<string | undefined>(
+    hydrationComplete ? `${prefix}${nextId++}` : undefined,
+  );
   const elementRef = useRef<E>();
 
   const idProps = {
@@ -49,15 +52,19 @@ function useClientDomId<E extends Element>(
     return { suppressHydrationWarning: true } as T;
   };
 
-  // Populate ID as soon as possible, after React hydrates
-  // or performs DOM mutations for non-hydration renders
+  // Populate ID as soon as possible, after DOM mutations
   useLayoutEffect(() => {
-    const element = elementRef.current as E;
-
-    // Initial hydration: set to `element.id`
-    // Non-hydration renders: generate new ID
-    setId(element.id || `${prefix}${nextId++}`);
+    if (!hydrationComplete) {
+      const element = elementRef.current as E;
+      setId(element.id || `${prefix}${nextId++}`);
+    }
   }, [prefix]);
+
+  // Mark hydration as complete, so that future renders can
+  // immediately generate an ID, rather than updating state
+  useEffect(() => {
+    hydrationComplete = true;
+  }, []);
 
   return [idProps, useId];
 }
