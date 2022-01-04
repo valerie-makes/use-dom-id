@@ -29,6 +29,7 @@
   "unpkg": "./dist/use-dom-id.umd.js",
   "module": "./dist/use-dom-id.module.js",
   "source": "src/use-dom-id.ts",
+  "types": "./dist/use-dom-id.d.ts",
   "files": [
     "src",
     "dist"
