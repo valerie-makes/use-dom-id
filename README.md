@@ -58,7 +58,7 @@ function MyForm() {
   const nameLabelProps = useNameId((id) => ({ htmlFor: id }));
 
   const [emailInputProps, useEmailId] = useDomId<HTMLInputElement>();
-  const emailLabelProps = useNameId((id) => ({ htmlFor: id }));
+  const emailLabelProps = useEmailId((id) => ({ htmlFor: id }));
 
   return (
     <form>
