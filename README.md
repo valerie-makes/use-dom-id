@@ -1,10 +1,10 @@
 # use-dom-id
 
-`use-dom-id` is a React Hook that generates unique IDs for DOM elements. It is compatible with both server-side and client-side rendering, including SSR with client-side hydration. It is particularly useful for HTML forms, where unique IDs are required to create accessible labels.
+`use-dom-id` is a React Hook that generates unique IDs for DOM elements. It is compatible with both server-side and client-side rendering, including SSR with client-side hydration. It is particularly useful for HTML forms, where unique IDs are required for labels. It can also be used for other purposes, such as SVG definitions.
 
-## Usage
+## Examples
 
-Example: A form with a single labelled input element.
+### Form with single labelled input element
 
 ```tsx
 import useDomId from "@valerie-makes/use-dom-id";
@@ -22,11 +22,20 @@ function MyForm() {
 }
 ```
 
-This creates the following HTML structure:
+With server-side rendering and hydration, this HTML structure is produced:
 
 ```html
 <form>
   <label for="id-server-0">Full Name</label>
   <input id="id-server-0" type="text" />
+</form>
+```
+
+With client-side rendering, this HTML structure is produced:
+
+```html
+<form>
+  <label for="id-client-0">Full Name</label>
+  <input id="id-client-0" type="text" />
 </form>
 ```
