@@ -1,6 +1,6 @@
 # use-dom-id
 
-[![MIT License](https://img.shields.io/github/license/valerie-makes/use-dom-id)](https://github.com/valerie-makes/use-dom-id/blob/main/LICENSE) [![NPM version](https://img.shields.io/npm/v/@valerie-makes/use-dom-id)](https://www.npmjs.com/package/@valerie-makes/use-dom-id) [![Known Vulnerabilities](https://img.shields.io/snyk/vulnerabilities/npm/@valerie-makes/use-dom-id)](https://snyk.io/test/npm/@valerie-makes/use-dom-id)
+[![Build status](https://github.com/valerie-makes/use-dom-id/actions/workflows/build-test.yml/badge.svg)](https://github.com/valerie-makes/use-dom-id/actions/workflows/build-test.yml) [![MIT License](https://img.shields.io/github/license/valerie-makes/use-dom-id)](https://github.com/valerie-makes/use-dom-id/blob/main/LICENSE) [![NPM version](https://img.shields.io/npm/v/@valerie-makes/use-dom-id)](https://www.npmjs.com/package/@valerie-makes/use-dom-id) [![Known Vulnerabilities](https://snyk.io/test/npm/@valerie-makes/use-dom-id/badge.svg)](https://snyk.io/test/npm/@valerie-makes/use-dom-id)
 
 `use-dom-id` is a dependency-free React Hook for generating unique element IDs. It is compatible with both server-side and client-side rendering, including SSR with client-side hydration. It is particularly useful for HTML forms, where unique IDs are required for labels. It can also be used for other purposes, such as SVG definitions.
 
