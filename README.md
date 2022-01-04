@@ -2,6 +2,30 @@
 
 `use-dom-id` is a React Hook that generates unique IDs for DOM elements. It is compatible with both server-side and client-side rendering, including SSR with client-side hydration. It is particularly useful for HTML forms, where unique IDs are required for labels. It can also be used for other purposes, such as SVG definitions.
 
+## Usage
+
+### `useDomId<E extends Element>()`
+
+Generate a unique ID for a particular type of DOM element.
+
+```ts
+const [idProps, useId] = useDomId<HTMLInputElement>();
+
+// returns <input id="unique-id" />
+return <input {...idProps} />;
+```
+
+### `useId<T>(generator: (id: string) => T)`
+
+Using a particular ID, generate props for additional elements.
+
+```ts
+const labelProps = useId((id) => ({ htmlFor: id }));
+
+// returns <label htmlFor="unique-id">My Label</label>
+return <label {...labelProps}>My Label</label>;
+```
+
 ## Examples
 
 ### Form with single labelled input element
