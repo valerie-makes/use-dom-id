@@ -55,8 +55,8 @@ function useClientDomId<E extends Element>(
   // Populate ID as soon as possible, after DOM mutations
   useLayoutEffect(() => {
     if (!hydrationComplete) {
-      const element = elementRef.current as E;
-      setId(element.id || `${prefix}${nextId++}`);
+      const element = elementRef.current;
+      setId(element?.id || `${prefix}${nextId++}`);
     }
   }, [prefix]);
 
