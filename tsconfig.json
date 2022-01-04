@@ -1,0 +1,4 @@
+{
+  "compilerOptions": { "lib": ["DOM"] },
+  "extends": "@tsconfig/recommended/tsconfig.json"
+}
