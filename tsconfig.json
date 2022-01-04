@@ -1,4 +1,7 @@
 {
-  "compilerOptions": { "lib": ["DOM"] },
+  "compilerOptions": {
+    "lib": ["DOM"],
+    "jsx": "preserve"
+  },
   "extends": "@tsconfig/recommended/tsconfig.json"
 }
