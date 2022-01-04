@@ -22,21 +22,12 @@ function MyForm() {
 }
 ```
 
-With server-side rendering and hydration, this HTML structure is produced:
+The following HTML structure is produced during server-side rendering:
 
 ```html
 <form>
   <label for="id-server-0">Full Name</label>
   <input id="id-server-0" type="text" />
-</form>
-```
-
-With client-side rendering, this HTML structure is produced:
-
-```html
-<form>
-  <label for="id-client-0">Full Name</label>
-  <input id="id-client-0" type="text" />
 </form>
 ```
 
@@ -64,7 +55,7 @@ function MyForm() {
 }
 ```
 
-With server-side rendering and hydration, this HTML structure is produced:
+The following HTML structure is produced during server-side rendering:
 
 ```html
 <form>
@@ -73,17 +64,5 @@ With server-side rendering and hydration, this HTML structure is produced:
 
   <label for="id-server-1">Email Address</label>
   <input id="id-server-1" type="email" />
-</form>
-```
-
-With client-side rendering, this HTML structure is produced:
-
-```html
-<form>
-  <label for="id-client-0">Full Name</label>
-  <input id="id-client-0" type="text" />
-
-  <label for="id-client-1">Email Address</label>
-  <input id="id-client-1" type="email" />
 </form>
 ```
