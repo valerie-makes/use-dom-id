@@ -6,7 +6,7 @@
 
 ## Usage
 
-Outputs below are given for a server-rendering environment.
+Outputs below are accurate for a server-rendering environment. The prefix `id-client` is used during client-side rendering to avoid collisions, except during hydration, in which IDs provided by the server are preserved.
 
 ### `useDomId<E extends Element>()`
 
@@ -55,7 +55,7 @@ return <label {...labelProps}>My Label</label>;
 
 ### `resetRenderContext()`
 
-Resets render context variables, including the next ID. Useful to run before calling `renderToString()` in a server application such as Express, and before tests to ensure predictable outputs.
+Resets render context variables, including the next ID. Useful to run before calling `renderToString()` in a server application such as Express, and before running tests, to ensure predictable outputs.
 
 ```ts
 import { resetRenderContext } from "@valerie-makes/use-dom-id";
