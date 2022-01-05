@@ -21,22 +21,14 @@
   "license": "MIT",
   "author": "Valerie Bailey <v@valbailey.com>",
   "type": "module",
-  "exports": {
-    "require": "./dist/index.cjs",
-    "default": "./dist/index.modern.js"
-  },
-  "main": "./dist/index.cjs",
-  "unpkg": "./dist/index.umd.js",
-  "module": "./dist/index.module.js",
-  "source": "src/index.ts",
-  "types": "./dist/index.d.ts",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
   "files": [
-    "src",
-    "dist"
+    "lib"
   ],
   "scripts": {
-    "build": "microbundle",
-    "dev": "microbundle watch",
+    "build": "tsc",
+    "dev": "tsc -w",
     "lint": "prettier -c src && eslint src",
     "test": "jest"
   },
@@ -48,12 +40,11 @@
     "@types/react": "^17.0.38",
     "@typescript-eslint/eslint-plugin": "^5.9.0",
     "@typescript-eslint/parser": "^5.9.0",
-    "babel-jest": "^27.4.5",
+    "babel-jest": "^27.4.6",
     "eslint": "^8.6.0",
     "eslint-plugin-jest": "^25.3.4",
     "eslint-plugin-react-hooks": "^4.3.0",
-    "jest": "^27.4.5",
-    "microbundle": "^0.14.2",
+    "jest": "^27.4.6",
     "prettier": "^2.5.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

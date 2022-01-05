@@ -1,5 +1,5 @@
 import React from "react";
-import useDomId from "../src";
+import useDomId from "../lib";
 
 export default function MyApp() {
   const [nameInputProps, useNameId] = useDomId<HTMLInputElement>();

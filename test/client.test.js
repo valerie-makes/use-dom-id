@@ -5,7 +5,7 @@
 import React from "react";
 import MyApp from "./__MyApp";
 
-import { resetRenderContext } from "../src";
+import { resetRenderContext } from "../lib";
 import { render, hydrate } from "react-dom";
 
 import snapshots from "./__snapshots__/server.test.js.snap";

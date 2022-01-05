@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "lib": ["DOM"],
-    "jsx": "preserve"
+    "module": "esnext",
+    "jsx": "preserve",
+    "declaration": true,
+    "outDir": "./lib"
   },
+  "include": ["src"],
   "extends": "@tsconfig/recommended/tsconfig.json"
 }
