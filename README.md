@@ -36,6 +36,18 @@ const labelProps = useId((id) => ({ htmlFor: id }));
 return <label {...labelProps}>My Label</label>;
 ```
 
+### `resetRenderContext()`
+
+Resets render context variables, including the next ID. Useful to run before calling `renderToString()` in a server application such as Express, and before tests to ensure predictable outputs.
+
+```ts
+import { resetRenderContext } from "@valerie-makes/use-dom-id";
+```
+
+```ts
+resetRenderContext();
+```
+
 ## Examples
 
 ### Form with single labelled input element
