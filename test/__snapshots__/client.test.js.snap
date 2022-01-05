@@ -1,3 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`client-side rendering should hydrate correctly 1`] = `"<form data-reactroot=\\"\\"><label for=\\"id-server-0\\">Full Name</label><input type=\\"text\\" id=\\"id-server-0\\"><label for=\\"id-server-1\\">Email Address</label><input type=\\"email\\" id=\\"id-server-1\\"></form>"`;
+
 exports[`client-side rendering should render correctly 1`] = `"<form><label for=\\"id-client-0\\">Full Name</label><input id=\\"id-client-0\\" type=\\"text\\"><label for=\\"id-client-1\\">Email Address</label><input id=\\"id-client-1\\" type=\\"email\\"></form>"`;

@@ -13,6 +13,11 @@ type Generator<T extends ElementProps> = (id: string) => T;
 let nextId = 0;
 let hydrationComplete = false;
 
+export function resetRenderContext() {
+  nextId = 0;
+  hydrationComplete = false;
+}
+
 // For server-side renders:
 // - Generate an ID immediately
 // - Provide `idProps` and `useId`
