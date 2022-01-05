@@ -1,7 +1,12 @@
 import type { HTMLProps, SVGProps, MutableRefObject } from "react";
-import { useRef, useState, useEffect, useLayoutEffect } from "react";
+import { useRef, useState, useLayoutEffect } from "react";
 
-type IdProps<E extends Element> = { id: string; ref: MutableRefObject<E> };
+type IdProps<E extends Element> = {
+  id: string;
+  "data-ssr"?: boolean;
+  ref: MutableRefObject<E>;
+};
+
 type ElementProps = HTMLProps<HTMLElement> | SVGProps<SVGElement>;
 type Generator<T extends ElementProps> = (id: string) => T;
 
@@ -14,13 +19,12 @@ let hydrationComplete = false;
 function useServerDomId<E extends Element>(
   prefix: string,
 ): [IdProps<E>, typeof useId] {
-  // useState, useRef etc are unnecessary for server renders - React
-  // will only call each hook once because there is no interactivity
   const id = `${prefix}${nextId++}`;
-  const idProps = { id } as IdProps<E>;
+  const idProps = { id, "data-ssr": true } as IdProps<E>;
 
-  const useId = <T extends ElementProps>(generator: Generator<T>): T =>
-    generator(id);
+  const useId = <T extends ElementProps>(generator: Generator<T>): T => {
+    return generator(id);
+  };
 
   return [idProps, useId];
 }
@@ -32,13 +36,21 @@ function useServerDomId<E extends Element>(
 function useClientDomId<E extends Element>(
   prefix: string,
 ): [IdProps<E>, typeof useId] {
-  // React will preserve existing attributes if they are
-  // undefined during hydration, but will warn by default
+  // Mark hydration as complete if there are no more
+  // elements with the attribute "data-ssr" remaining
+  if (!hydrationComplete) {
+    const remaining = document.querySelector("[data-ssr]");
+    hydrationComplete = remaining == null;
+  }
+
+  // Only generate a fresh ID if hydration is complete
   const [id, setId] = useState<string | undefined>(
     hydrationComplete ? `${prefix}${nextId++}` : undefined,
   );
   const elementRef = useRef<E>();
 
+  // React will preserve existing attributes if they are
+  // undefined during hydration, but will warn by default
   const idProps = {
     id,
     ref: elementRef,
@@ -56,15 +68,10 @@ function useClientDomId<E extends Element>(
   useLayoutEffect(() => {
     if (!hydrationComplete) {
       const element = elementRef.current;
+      element?.removeAttribute("data-ssr");
       setId(element?.id || `${prefix}${nextId++}`);
     }
-  }, [prefix]);
-
-  // Mark hydration as complete, so that future renders can
-  // immediately generate an ID, rather than updating state
-  useEffect(() => {
-    hydrationComplete = true;
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return [idProps, useId];
 }
