@@ -1,7 +1,13 @@
 import React from "react";
 import useDomId from "../lib";
 
-export default function MyApp() {
+type MyAppProps = {
+  logRender: () => void;
+};
+
+export default function MyApp({ logRender }: MyAppProps) {
+  logRender();
+
   const [nameInputProps, useNameId] = useDomId<HTMLInputElement>();
   const nameLabelProps = useNameId((id) => ({ htmlFor: id }));
 
