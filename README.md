@@ -4,6 +4,50 @@
 
 `use-dom-id` is a dependency-free React Hook for generating unique element IDs. It is compatible with both server-side and client-side rendering, including SSR with client-side hydration. It is particularly useful for HTML forms, where unique IDs are required for labels. It can also be used for other purposes, such as SVG definitions.
 
+## Examples
+
+### Form with single labelled input element
+
+```tsx
+import useDomId from "@valerie-makes/use-dom-id";
+
+function MyForm() {
+  const [nameInputProps, useNameId] = useDomId<HTMLInputElement>();
+  const nameLabelProps = useNameId((id) => ({ htmlFor: id }));
+
+  return (
+    <form>
+      <label {...nameLabelProps}>Full Name</label>
+      <input {...nameInputProps} type="text" />
+    </form>
+  );
+}
+```
+
+### Form with multiple labelled input elements
+
+```tsx
+import useDomId from "@valerie-makes/use-dom-id";
+
+function MyForm() {
+  const [nameInputProps, useNameId] = useDomId<HTMLInputElement>();
+  const nameLabelProps = useNameId((id) => ({ htmlFor: id }));
+
+  const [emailInputProps, useEmailId] = useDomId<HTMLInputElement>();
+  const emailLabelProps = useEmailId((id) => ({ htmlFor: id }));
+
+  return (
+    <form>
+      <label {...nameLabelProps}>Full Name</label>
+      <input {...nameInputProps} type="text" />
+
+      <label {...emailLabelProps}>Email Address</label>
+      <input {...emailInputProps} type="email" />
+    </form>
+  );
+}
+```
+
 ## Usage
 
 Outputs below are accurate for a server-rendering environment. The prefix `id-client` is used during client-side rendering to avoid collisions, except during hydration, in which IDs provided by the server are preserved.
@@ -63,48 +107,4 @@ import { resetRenderContext } from "@valerie-makes/use-dom-id";
 
 ```ts
 resetRenderContext(); // next ID is now 0
-```
-
-## Examples
-
-### Form with single labelled input element
-
-```tsx
-import useDomId from "@valerie-makes/use-dom-id";
-
-function MyForm() {
-  const [nameInputProps, useNameId] = useDomId<HTMLInputElement>();
-  const nameLabelProps = useNameId((id) => ({ htmlFor: id }));
-
-  return (
-    <form>
-      <label {...nameLabelProps}>Full Name</label>
-      <input {...nameInputProps} type="text" />
-    </form>
-  );
-}
-```
-
-### Form with multiple labelled input elements
-
-```tsx
-import useDomId from "@valerie-makes/use-dom-id";
-
-function MyForm() {
-  const [nameInputProps, useNameId] = useDomId<HTMLInputElement>();
-  const nameLabelProps = useNameId((id) => ({ htmlFor: id }));
-
-  const [emailInputProps, useEmailId] = useDomId<HTMLInputElement>();
-  const emailLabelProps = useEmailId((id) => ({ htmlFor: id }));
-
-  return (
-    <form>
-      <label {...nameLabelProps}>Full Name</label>
-      <input {...nameInputProps} type="text" />
-
-      <label {...emailLabelProps}>Email Address</label>
-      <input {...emailInputProps} type="email" />
-    </form>
-  );
-}
 ```
