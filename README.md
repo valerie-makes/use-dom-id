@@ -11,6 +11,10 @@
 Generate a unique ID for a particular type of DOM element.
 
 ```ts
+import useDomId from "@valerie-makes/use-dom-id";
+```
+
+```ts
 const [idProps, useId] = useDomId<HTMLInputElement>();
 
 // returns <input id="unique-id" />
@@ -20,6 +24,10 @@ return <input {...idProps} />;
 ### `useId<T>(generator: (id: string) => T)`
 
 Using a particular ID, generate props for additional elements.
+
+```ts
+const [idProps, useId] = useDomId<HTMLInputElement>();
+```
 
 ```ts
 const labelProps = useId((id) => ({ htmlFor: id }));
