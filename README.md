@@ -6,6 +6,8 @@
 
 ## Usage
 
+Outputs below are given for a server-rendering environment.
+
 ### `useDomId<E extends Element>()`
 
 Generate a unique ID for a particular type of DOM element.
@@ -17,7 +19,22 @@ import useDomId from "@valerie-makes/use-dom-id";
 ```ts
 const [idProps, useId] = useDomId<HTMLInputElement>();
 
-// returns <input id="unique-id" />
+// returns <input id="id-server-0" />
+return <input {...idProps} />;
+```
+
+### `useDomId<E extends Element>(key: string)`
+
+Generate a unique ID for a particular type of DOM element, using a custom key.
+
+```ts
+import useDomId from "@valerie-makes/use-dom-id";
+```
+
+```ts
+const [idProps, useId] = useDomId<HTMLInputElement>("my-key");
+
+// returns <input id="my-key-server-0" />
 return <input {...idProps} />;
 ```
 
@@ -32,7 +49,7 @@ const [idProps, useId] = useDomId<HTMLInputElement>();
 ```ts
 const labelProps = useId((id) => ({ htmlFor: id }));
 
-// returns <label htmlFor="unique-id">My Label</label>
+// returns <label htmlFor="id-server-0">My Label</label>
 return <label {...labelProps}>My Label</label>;
 ```
 
@@ -45,7 +62,7 @@ import { resetRenderContext } from "@valerie-makes/use-dom-id";
 ```
 
 ```ts
-resetRenderContext();
+resetRenderContext(); // next ID is now 0
 ```
 
 ## Examples
